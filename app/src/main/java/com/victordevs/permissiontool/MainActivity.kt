@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.annotation.RequiresApi
 import com.victordevs.permissiontool.extensions.toast
+
 @RequiresApi(Build.VERSION_CODES.M)
 
 class MainActivity : AppCompatActivity() {
@@ -19,13 +20,18 @@ class MainActivity : AppCompatActivity() {
             requestPermission()
         }
     }
-    private fun requestPermission(){
+
+    private fun requestPermission() {
         coarseLocation.runWithPermission {
             toast("Success")
         }
     }
 
     private val coarseLocation = PermissionRequester(this, CAMERA,
-        onDenied = { toast("Permission Denied") },
-        onShowRationale = { toast("Should show Rationale") })
+        onDenied = {
+            toast("Permission Denied")
+        },
+        onShowRationale = {
+            toast("Should show Rationale")
+        })
 }
